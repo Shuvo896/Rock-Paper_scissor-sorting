@@ -21,20 +21,17 @@ body {
   max-width: 800px;
 }
 
-/* Title */
 h1 {
   color: #ff6f61;
   margin-bottom: 10px;
 }
 
-/* Instructions */
 .instructions {
   margin-bottom: 20px;
   color: #ddd;
   font-size: 0.9rem;
 }
 
-/* Buttons */
 .start-btn, .exit-btn, .sort-btn {
   padding: 10px 20px;
   font-size: 1.2rem;
@@ -49,18 +46,10 @@ h1 {
   color: #ffffff;
 }
 
-.start-btn:hover {
-  background-color: #6c1900;
-}
-
 .exit-btn {
-  background-color: teal;
+  background-color: crimson;
   color: #ffffff;
   display: none;
-}
-
-.exit-btn:hover {
-  background-color: #6c1900;
 }
 
 .sort-btn {
@@ -70,43 +59,20 @@ h1 {
   display: none;
 }
 
-.sort-btn:hover {
-  background-color: #6c1900;
-}
-
-/* Player Panels */
 .players-container {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-.player {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+.shared-array-container {
+  margin-top: 20px;
 }
 
-.move-display {
-  font-size: 3rem;
-  padding: 10px;
-  background: #222;
-  border: 3px solid #fff;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ff6f61;
-}
-
-/* Array Display */
 .array-container {
   display: flex;
   gap: 5px;
+  justify-content: center;
 }
 
 .array-item {
@@ -117,10 +83,46 @@ h1 {
   color: #fff;
 }
 
-/* Game Messages */
-.game-message {
-  margin-top: 20px;
-  font-size: 1.2rem;
+.move-display {
+  font-size: 3rem;
+  padding: 10px;
+  background: #222;
+  border: 3px solid #fff;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff6f61;
+}
+div #player1{
+  margin-left: 80px;
+  margin-bottom: 30px;
+}
+div #player2{
+  margin-right: 80px;
+  margin-bottom: 30px;
+}
+.game-message { 
+  margin-top: 10px;
+  font-size: 1.5rem;
   color: #ff6f61;
   text-align: center;
+}
+
+/* AGAIN Button */
+.again-btn {
+  padding: 10px 20px;
+  margin-left: 22rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: rgb(128, 36, 0);
+  color: #ffffff;
+}
+
+.again-btn:hover {
+  background-color: #6c1900;
 }

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sort to win</title>
+  <title>Sort to Win</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="game-container">
     <h1>Rock-Paper-Scissors-Bubbles</h1>
 
-    <!-- Instructions for key mappings -->
+    <!-- Instructions -->
     <div class="instructions">
       <p>Player 1: Use <strong>A</strong> for Rock, <strong>S</strong> for Paper, <strong>D</strong> for Scissors</p>
       <p>Player 2: Use <strong>J</strong> for Rock, <strong>K</strong> for Paper, <strong>L</strong> for Scissors</p>
@@ -20,28 +20,32 @@
     <button id="start-game" class="start-btn">START GAME</button>
     <button id="exit-game" class="exit-btn">EXIT GAME</button>
 
+    <!-- Shared Array -->
+    <div class="shared-array-container">
+      <h2>Shared Array</h2>
+      <div id="shared-array" class="array-container"></div>
+    </div>
+
     <!-- Player Panels -->
     <div class="players-container">
-      <!-- Player 1 Panel -->
       <div class="player" id="player1">
         <h2>Player 1</h2>
-        <div class="move-display" id="player1-move">🫵🏾</div>
-        <div class="array-container" id="player1-array"></div>
+        <div class="move-display" id="player1-move">🤫</div>
         <button id="player1-sort" class="sort-btn" onclick="sortArray(1)">Sort</button>
       </div>
 
-      <!-- Player 2 Panel -->
       <div class="player" id="player2">
         <h2>Player 2</h2>
-        <div class="move-display" id="player2-move">🫵🏾</div>
-        <div class="array-container" id="player2-array"></div>
+        <div class="move-display" id="player2-move">🫣</div>
         <button id="player2-sort" class="sort-btn" onclick="sortArray(2)">Sort</button>
       </div>
     </div>
 
-    <!-- Game Messages -->
+    <!-- Game Message -->
     <div class="game-message" id="game-message">Press START GAME to begin</div>
+    <button id="again-btn" class="again-btn" style="display: none;">AGAIN</button>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

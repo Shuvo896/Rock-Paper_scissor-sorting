@@ -4,19 +4,20 @@ let player2 = { choice: "", index: 0 };
 let gameActive = false;
 let timer;
 
-const generateRandomArray = () => Array.from({ length: 7 }, () => Math.floor(Math.random() * 100));
+const generateRandomArray = () => Array.from({ length: 8 }, () => Math.floor(Math.random() * 100));
 
 const startGame = () => {
   sharedArray = generateRandomArray();
   player1 = { choice: "", index: 0 };
   player2 = { choice: "", index: 0 };
   gameActive = true;
+
   document.getElementById("game-message").textContent = "Game started! Players, make your move.";
   document.getElementById("start-game").style.display = "none";
-  updateArrayDisplay();
   document.getElementById("exit-game").style.display = "inline-block";
 
-  // Start the timer
+  updateMovesDisplay();
+  updateArrayDisplay();
   startRound();
 };
 
@@ -36,17 +37,31 @@ const resetGame = () => {
 };
 
 const startRound = () => {
+  if (isSorted()) {
+    gameActive = false;
+    document.getElementById("game-message").textContent = "The array is fully sorted! Game over.";
+    return;
+  }
+
+  clearTimeout(timer);
   player1.choice = player2.choice = "";
   updateMovesDisplay();
-  document.getElementById("game-message").textContent = "Players, you have 3 seconds to make a move!";
-  
-  // Give players 3 seconds to make a move or assign random moves
+  document.getElementById("game-message").textContent = "Players, make your move!";
+
   timer = setTimeout(() => {
-    if (!player1.choice) player1.choice = ["✊🏾", "🖐🏾", "✌🏾"][Math.floor(Math.random() * 3)];
-    if (!player2.choice) player2.choice = ["✊🏾", "🖐🏾", "✌🏾"][Math.floor(Math.random() * 3)];
-    resolveRound();
+    if (!player1.choice && !player2.choice) {
+      document.getElementById("game-message").textContent = "No moves made! Press AGAIN.";
+      document.getElementById("again-btn").style.display = "block";
+    } else {
+      resolveRound();
+    }
   }, 3000);
 };
+
+document.getElementById("again-btn").addEventListener("click", () => {
+  document.getElementById("again-btn").style.display = "none";
+  startRound();
+});
 
 const resolveRound = () => {
   const winner = determineWinner(player1.choice, player2.choice);
@@ -60,17 +75,16 @@ const resolveRound = () => {
   } else {
     document.getElementById("game-message").textContent = "It's a tie! Play again.";
     toggleSortButtons(false, false);
+    setTimeout(startRound, 1000);
   }
-
-  startRound();
 };
 
 const determineWinner = (choice1, choice2) => {
   if (choice1 === choice2) return "Tie";
   if (
-    (choice1 === "✊🏾" && choice2 === "✌🏾") ||
-    (choice1 === "🖐🏾" && choice2 === "✊🏾") ||
-    (choice1 === "✌🏾" && choice2 === "🖐🏾")
+    (choice1 === "✊" && choice2 === "✌") ||
+    (choice1 === "🖐" && choice2 === "✊") ||
+    (choice1 === "✌" && choice2 === "🖐")
   ) {
     return "Player 1";
   }
@@ -82,10 +96,10 @@ const handleKeyPress = (event) => {
 
   const key = event.key.toLowerCase();
   if (["a", "s", "d"].includes(key)) {
-    player1.choice = key === "a" ? "✊🏾" : key === "s" ? "🖐🏾" : "✌🏾";
+    player1.choice = key === "a" ? "✊" : key === "s" ? "🖐" : "✌";
     updateMovesDisplay();
   } else if (["j", "k", "l"].includes(key)) {
-    player2.choice = key === "j" ? "✊🏾" : key === "k" ? "🖐🏾" : "✌🏾";
+    player2.choice = key === "j" ? "✊" : key === "k" ? "🖐" : "✌";
     updateMovesDisplay();
   }
 };
@@ -106,6 +120,40 @@ const updateArrayDisplay = () => {
     .join("");
 };
 
+const sortArray = (player) => {
+  if (!gameActive) return;
+
+  let swapped = false;
+  for (let i = 0; i < sharedArray.length - 1; i++) {
+    if (sharedArray[i] > sharedArray[i + 1]) {
+      [sharedArray[i], sharedArray[i + 1]] = [sharedArray[i + 1], sharedArray[i]];
+      swapped = true;
+      break;
+    }
+  }
+
+  updateArrayDisplay();
+
+  if (isSorted()) {
+    gameActive = false;
+    document.getElementById("game-message").textContent = `Player ${player} wins by completing the array!`;
+    toggleSortButtons(false, false);
+  } else {
+    document.getElementById("game-message").textContent = `Player ${player} sorted a step!`;
+    toggleSortButtons(false, false);
+    setTimeout(startRound, 1000);
+  }
+};
+
+const isSorted = () => {
+  for (let i = 0; i < sharedArray.length - 1; i++) {
+    if (sharedArray[i] > sharedArray[i + 1]) return false;
+  }
+  return true;
+};
+
+document.getElementById("player1-sort").addEventListener("click", () => sortArray(1));
+document.getElementById("player2-sort").addEventListener("click", () => sortArray(2));
 document.getElementById("start-game").addEventListener("click", startGame);
 document.getElementById("exit-game").addEventListener("click", exitGame);
 window.addEventListener("keydown", handleKeyPress);
