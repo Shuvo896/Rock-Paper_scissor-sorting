@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #2e2e2e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.game-container {
+  text-align: center;
+  background: linear-gradient(135deg, #1c1c1c, #444);
+  padding: 20px;
+  border: 5px solid #ff6f61;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px #ff6f61;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Title */
+h1 {
+  color: #ff6f61;
+  margin-bottom: 10px;
+}
+
+/* Instructions */
+.instructions {
+  margin-bottom: 20px;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.start-btn, .exit-btn, .sort-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.start-btn {
+  background-color: teal;
+  color: #ffffff;
+}
+
+.start-btn:hover {
+  background-color: #6c1900;
+}
+
+.exit-btn {
+  background-color: teal;
+  color: #ffffff;
+  display: none;
+}
+
+.exit-btn:hover {
+  background-color: #6c1900;
+}
+
+.sort-btn {
+  background-color: teal;
+  color: #ffffff;
+  font-size: 1rem;
+  display: none;
+}
+
+.sort-btn:hover {
+  background-color: #6c1900;
+}
+
+/* Player Panels */
+.players-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.player {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.move-display {
+  font-size: 3rem;
+  padding: 10px;
+  background: #222;
+  border: 3px solid #fff;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff6f61;
+}
+
+/* Array Display */
+.array-container {
+  display: flex;
+  gap: 5px;
+}
+
+.array-item {
+  background: #1c1c1c;
+  border: 2px solid #ff6f61;
+  padding: 5px 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Game Messages */
+.game-message {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #ff6f61;
+  text-align: center;
+}
