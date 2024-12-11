@@ -124,8 +124,10 @@ const sortArray = (player) => {
   if (!gameActive) return;
 
   let swapped = false;
-  for (let i = 0; i < sharedArray.length - 1; i++) {
-    if (sharedArray[i] > sharedArray[i + 1]) {
+  for (let i = 0; i < sharedArray.length - 1; i++)
+  {
+    if (sharedArray[i] > sharedArray[i + 1])
+    {
       [sharedArray[i], sharedArray[i + 1]] = [sharedArray[i + 1], sharedArray[i]];
       swapped = true;
       break;
@@ -155,5 +157,6 @@ const isSorted = () => {
 document.getElementById("player1-sort").addEventListener("click", () => sortArray(1));
 document.getElementById("player2-sort").addEventListener("click", () => sortArray(2));
 document.getElementById("start-game").addEventListener("click", startGame);
+document.getElementById("game-message").addEventListener("click", isSorted);
 document.getElementById("exit-game").addEventListener("click", exitGame);
 window.addEventListener("keydown", handleKeyPress);
